@@ -67,19 +67,371 @@ body {
 }
 .sidebar-footer strong { color: #ccc; display: block; margin-bottom: 2px; }
 
+/* HAMBURGER BUTTON - Hidden by default (desktop) */
+#hamburger-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--carbon);
+  font-size: 24px;
+  padding: 8px 12px;
+}
+
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
+
+/* TABLET (máx 768px) */
+@media (max-width: 768px) {
+  /* Sidebar colapsable */
+  .sidebar {
+    position: fixed;
+    left: -230px;
+    top: 0;
+    transition: left 0.3s ease;
+    z-index: 100;
+    width: 230px;
+    height: 100vh;
+    box-shadow: none;
+  }
+  .sidebar.open {
+    left: 0;
+    box-shadow: 4px 0 16px rgba(0,0,0,0.3);
+  }
+  
+  /* Overlay detrás del sidebar */
+  .sidebar.open::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: -1;
+    pointer-events: all;
+  }
+  
+  /* Mostrar hamburger */
+  #hamburger-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    width: 44px;
+    height: 44px;
+    background: var(--carbon);
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 6px;
+    z-index: 102;
+    transition: all 0.2s ease;
+  }
+  
+  #hamburger-btn:active {
+    background: #333;
+    transform: scale(0.95);
+  }
+  
+  /* Main ajustado */
+  .main {
+    margin-left: 0;
+    padding: 50px 20px 32px 20px;
+  }
+  
+  /* Tarjetas: 2 columnas */
+  .cards-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .card {
+    padding: 16px;
+  }
+  
+  .card-label {
+    font-size: 10px;
+  }
+  
+  .card-value {
+    font-size: 22px;
+  }
+  
+  /* Tabla scrollable */
+  .tabla-wrap {
+    overflow-x: auto;
+  }
+  
+  table {
+    min-width: 600px;
+  }
+  
+  th, td {
+    padding: 12px 16px;
+    font-size: 12px;
+  }
+  
+  /* Modal más pequeño */
+  .modal {
+    width: 95vw;
+    max-height: 95vh;
+    max-width: 600px;
+  }
+  
+  .modal-body {
+    padding: 12px;
+  }
+  
+  .modal-foot {
+    padding: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  /* Botones más pequeños */
+  .btn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .btn-sm {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+  
+  /* Page header ajustado */
+  .page-header {
+    margin-bottom: 20px;
+  }
+  
+  .page-title {
+    font-size: 22px;
+  }
+  
+  /* Form groups */
+  .form-group {
+    margin-bottom: 14px;
+  }
+  
+  .form-input, .form-select, .form-textarea {
+    padding: 9px 12px;
+    font-size: 14px;
+  }
+}
+
+/* CELULAR (máx 480px) */
+@media (max-width: 480px) {
+  /* Main padding reducido */
+  .main {
+    padding: 50px 14px 24px 14px;
+  }
+  
+  /* Tarjetas: 1 columna */
+  .cards-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    padding: 14px;
+  }
+  
+  .card-label {
+    font-size: 9px;
+  }
+  
+  .card-value {
+    font-size: 20px;
+  }
+  
+  /* Page title más pequeño */
+  .page-header {
+    margin-bottom: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .page-title {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  
+  /* Modal en celular */
+  .modal {
+    width: 98vw;
+    max-height: 90vh;
+    border-radius: 10px;
+  }
+  
+  .modal-head {
+    padding: 16px;
+  }
+  
+  .modal-head h3 {
+    font-size: 16px;
+  }
+  
+  .modal-body {
+    padding: 12px;
+  }
+  
+  .modal-foot {
+    padding: 12px;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .modal-foot .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Tabla scrollable en celular */
+  table {
+    font-size: 11px;
+    min-width: 500px;
+  }
+  
+  th, td {
+    padding: 10px 12px;
+  }
+  
+  /* Botones full-width en modal */
+  .btn {
+    padding: 7px 10px;
+    font-size: 11px;
+  }
+  
+  .btn-sm {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+  
+  /* Form inputs */
+  .form-input, .form-select, .form-textarea {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+  
+  .form-label {
+    font-size: 11px;
+  }
+  
+  /* Tabla header */
+  .tabla-header {
+    padding: 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .tabla-title {
+    font-size: 13px;
+  }
+  
+  /* Badges más pequeños */
+  .badge {
+    padding: 2px 8px;
+    font-size: 10px;
+  }
+  
+  /* Recibo en modal */
+  .recibo {
+    padding: 12px;
+  }
+  
+  .recibo-header {
+    padding: 12px;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .recibo-header img {
+    height: 50px;
+  }
+  
+  .recibo-body {
+    padding: 12px;
+  }
+  
+  .recibo-row {
+    font-size: 12px;
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+/* ULTRA PEQUEÑO (máx 360px) */
+@media (max-width: 360px) {
+  .main {
+    padding: 50px 10px 20px 10px;
+  }
+  
+  .card {
+    padding: 12px;
+  }
+  
+  .card-label {
+    font-size: 8px;
+  }
+  
+  .card-value {
+    font-size: 18px;
+  }
+  
+  .page-title {
+    font-size: 18px;
+  }
+  
+  .btn {
+    padding: 6px 8px;
+    font-size: 10px;
+    gap: 4px;
+  }
+  
+  table {
+    font-size: 10px;
+    min-width: 450px;
+  }
+  
+  th, td {
+    padding: 8px 10px;
+  }
+}
+
 /* MAIN */
 .main {
   margin-left: 230px;
   min-height: 100vh;
   padding: 32px 36px;
+  transition: margin-left 0.3s ease;
 }
 .page { display: none; }
 .page.active { display: block; }
+
+/* HAMBURGER BUTTON (Hidden by default) */
+#hamburger-btn {
+  display: none;
+  background: var(--carbon);
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px 12px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 101;
+  border-radius: 5px;
+}
 
 /* HEADER */
 .page-header {
   display: flex; align-items: center; justify-content: space-between;
   margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 .page-title { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--carbon); }
 .page-subtitle { font-size: 13px; color: var(--gris-medio); margin-top: 2px; }
@@ -448,6 +800,8 @@ const FIRMA_B64 = 'data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1B
 </script>
 
 <!-- SIDEBAR -->
+<button id="hamburger-btn" onclick="toggleSidebar()" title="Menú">☰</button>
+
 <div class="sidebar" id="sidebar">
   <button class="hamburger" id="hamburger-btn" onclick="toggleSidebar()">☰</button>
   <div class="sidebar-logo">
